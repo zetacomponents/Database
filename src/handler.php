@@ -310,22 +310,32 @@ abstract class ezcDbHandler extends PDO
      * Returns the quoted version of an identifier to be used in an SQL query.
      * This method takes a given identifier and quotes it, so it can safely be
      * used in SQL queries.
-     * 
+     *
      * @param string $identifier The identifier to quote.
      * @return string The quoted identifier.
      */
     public function quoteIdentifier( $identifier )
     {
-        if ( sizeof( $this->identifierQuoteChars ) === 2 )
+        if ( !empty( $this->identifierQuoteChars["start"] ) && !empty( $this->identifierQuoteChars["end"] ) )
         {
-            $identifier = 
-                $this->identifierQuoteChars["start"]
-                . str_replace( 
-                    $this->identifierQuoteChars["end"],
-                    $this->identifierQuoteChars["end"].$this->identifierQuoteChars["end"],
-                    $identifier
-                  )
-                . $this->identifierQuoteChars["end"];
+            if ( strpos( $identifier, $this->identifierQuoteChars["end"] ) !== false )
+            {
+                $identifier =
+                    $this->identifierQuoteChars["start"]
+                    . str_replace(
+                        $this->identifierQuoteChars["end"],
+                        $this->identifierQuoteChars["end"].$this->identifierQuoteChars["end"],
+                        $identifier
+                      )
+                    . $this->identifierQuoteChars["end"];
+            }
+            else
+            {
+                $identifier =
+                    $this->identifierQuoteChars["start"]
+                    . $identifier
+                    . $this->identifierQuoteChars["end"];
+            }
         }
         return $identifier;
     }
