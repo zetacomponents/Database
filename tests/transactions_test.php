@@ -68,6 +68,7 @@ class ezcDatabaseTransactionsTest extends ezcTestCase
 {
     protected function setUp()
     {
+        $this->markTestIncomplete( "The ezcTestSettings class does not exist anywhere -- how was this ever supposed to wrok?" );
         try
         {
             $dbparams = ezcTestSettings::getInstance()->db->dsn;
