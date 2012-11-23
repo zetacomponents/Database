@@ -25,38 +25,7 @@
  * @subpackage Tests
  */
 
-/**
- * A factory to create a database connections
- * using previously set parameters.
- *
- * We use MyDB::create() to create a database connection from any place
- * without passing connection parameters every time.
- * (this is not the same as singleton since the connection is not stored in
- * a static member)
-
- * @package Database
- * @subpackage Tests
- */
-class MyDB
-{
-    static private $instance = null;
-    static private $dbParams = null;
-
-    static public function setParams( $dbParams )
-    {
-        self::$dbParams = $dbParams;
-    }
-
-    static public function create()
-    {
-        // create instance
-        if ( self::$dbParams === null )
-            throw new Exception( "Missing database " .
-                                 "connection parameteters." );
-
-        return ezcDbFactory::create( self::$dbParams );
-    }
-}
+require_once __DIR__ . '/test_case.php';
 
 /**
  * Testing how nested transactions work.
@@ -64,21 +33,11 @@ class MyDB
  * @package Database
  * @subpackage Tests
  */
-class ezcDatabaseTransactionsTest extends ezcTestCase
+class ezcDatabaseTransactionsTest extends ezcDatabaseTestCase
 {
     protected function setUp()
     {
-        $this->markTestIncomplete( "The ezcTestSettings class does not exist anywhere -- how was this ever supposed to wrok?" );
-        try
-        {
-            $dbparams = ezcTestSettings::getInstance()->db->dsn;
-            MyDB::setParams( $dbparams );
-            $this->db = MyDB::create();
-        }
-        catch ( Exception $e )
-        {
-            $this->markTestSkipped();
-        }
+        $this->db = parent::setUp();
     }
 
     // normal: test nested transactions

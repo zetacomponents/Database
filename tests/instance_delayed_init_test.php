@@ -25,6 +25,7 @@
  * @subpackage Tests
  */
 
+require_once __DIR__ . '/test_case.php';
 require_once 'test_classes.php';
 
 /**
@@ -33,12 +34,14 @@ require_once 'test_classes.php';
  * @package Database
  * @subpackage Tests
  */
-class ezcDatabaseInstanceDelayedInitTest extends ezcTestCase
+class ezcDatabaseInstanceDelayedInitTest extends ezcDatabaseTestCase
 {
     private $default;
 
     public function setUp()
     {
+        parent::setUp();
+
         if ( !ezcBaseFeatures::hasExtensionSupport( 'pdo_sqlite') )
         {
             $this->markTestSkipped();

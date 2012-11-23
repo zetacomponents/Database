@@ -25,24 +25,19 @@
  * @subpackage Tests
  */
 
+require_once __DIR__ . '/test_case.php';
+
 /**
  * Test the PDO system.
  *
  * @package Database
  * @subpackage Tests
  */
-class ezcPdoTest extends ezcTestCase
+class ezcPdoTest extends ezcDatabaseTestCase
 {
     protected function setUp()
     {
-        try
-        {
-            $db = ezcDbInstance::get();
-        }
-        catch ( Exception $e )
-        {
-            $this->markTestSkipped();
-        }
+        $db = parent::setUp();
 
         $this->q = new ezcQueryInsert( $db );
         try

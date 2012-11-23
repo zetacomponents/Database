@@ -25,11 +25,13 @@
  * @subpackage Tests
  */
 
+require_once __DIR__ . '/test_case.php';
+
 /**
  * @package Database
  * @subpackage Tests
  */
-class ezcDatabaseFactoryTest extends ezcTestCase
+class ezcDatabaseFactoryTest extends ezcDatabaseTestCase
 {
     public function testWithoutImplementationType()
     {

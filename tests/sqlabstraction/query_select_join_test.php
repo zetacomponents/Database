@@ -25,6 +25,8 @@
  * @subpackage Tests
  */
 
+require_once __DIR__ . '/../test_case.php';
+
 /**
  * Testing the JOIN functionality in the SQL abstraction layer.
  * These tests are performed on a real database and tests that
@@ -33,7 +35,7 @@
  * @package Database
  * @subpackage Tests
  */
-class ezcQuerySelectJoinTestImpl extends ezcTestCase
+class ezcQuerySelectJoinTestImpl extends ezcDatabaseTestCase
 {
     private $q;
     private $e;
@@ -41,14 +43,7 @@ class ezcQuerySelectJoinTestImpl extends ezcTestCase
 
     protected function setUp()
     {
-        try
-        {
-            $this->db = ezcDbInstance::get();
-        }
-        catch ( Exception $e )
-        {
-            $this->markTestSkipped();
-        }
+        $this->db = parent::setUp();
 
         $this->q = $this->db->createSelectQuery();
         $this->e = $this->q->expr;
