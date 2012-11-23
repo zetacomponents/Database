@@ -25,6 +25,8 @@
  * @subpackage Tests
  */
 
+require_once __DIR__ . '/../test_case.php';
+
 /**
  * Dummy query impl.
  */
@@ -57,19 +59,21 @@ class MyQuery extends ezcQuery
 /**
  * Tests the base ezcQuery class
  */
-class ezcQueryTest extends ezcTestCase
+class ezcQueryTest extends ezcDatabaseTestCase
 {
     private $q;
 
     protected function setUp()
     {
+        parent::setUp();
+
         try
         {
             $this->q = new MyQuery();
         }
         catch ( Exception $e )
         {
-            $this->markTestSkipped();
+            $this->markTestSkipped( $e->getMessage() );
         }
     }
 

@@ -25,26 +25,21 @@
  * @subpackage Tests
  */
 
+require_once __DIR__ . '/../test_case.php';
+
 /**
  * Testing the SQL expression abstraction layer for INSERT queries.
  *
  * @package Database
  * @subpackage Tests
  */
-class ezcQueryInsertTest extends ezcTestCase
+class ezcQueryInsertTest extends ezcDatabaseTestCase
 {
     private $q;
 
     protected function setUp()
     {
-        try
-        {
-            $db = ezcDbInstance::get();
-        }
-        catch ( Exception $e )
-        {
-            $this->markTestSkipped();
-        }
+        $db = parent::setUp();
 
         $this->q = new ezcQueryInsert( $db );
         try

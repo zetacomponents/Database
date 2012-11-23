@@ -25,26 +25,21 @@
  * @subpackage Tests
  */
 
+require_once __DIR__ . '/test_case.php';
+
 /**
  * Test the instance class
  *
  * @package Database
  * @subpackage Tests
  */
-class ezcDatabaseInstanceTest extends ezcTestCase
+class ezcDatabaseInstanceTest extends ezcDatabaseTestCase
 {
     private $default;
 
     protected function setUp()
     {
-        try
-        {
-            $this->default = ezcDbInstance::get();
-        }
-        catch ( Exception $e )
-        {
-            $this->markTestSkipped();
-        }
+        $this->default = parent::setUp();
     }
 
     protected function tearDown()
