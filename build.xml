@@ -14,4 +14,71 @@
         <!-- Disabled -->
     </target>
 
+    <target name="phpunit:integration"
+            depends="availability:php-testdir-is-available"
+            if="availability:php-testdir-is-available">
+
+        <common.enabled.antcall target="-phpunit:run-integration-no-logs" 
+                                property="phpunit.enabled">
+            <param name="in.ezcdatabase.dsn" value="${ezc.dsn.mysql}" />
+            <param name="in.phpunit.include.path" value="${in.phpunit.include.path}" />
+        </common.enabled.antcall>
+
+        <common.enabled.antcall target="-phpunit:run-integration-no-logs" 
+                                property="phpunit.enabled">
+            <param name="in.ezcdatabase.dsn" value="${ezc.dsn.sqlite}" />
+            <param name="in.phpunit.include.path" value="${in.phpunit.include.path}" />
+        </common.enabled.antcall>
+    </target>
+
+    <!--
+        This is a copy of -phpunit:run in setup/src/main/xml/exts/phpunit.xml
+        which has been stripped down and additionally got the possibility of
+        setting an environment variable
+    -->
+    <target name="-phpunit:run-integration-no-logs"
+            if="-phpunit:out-testdir-present"
+            depends="-phpunit:is-testdir-present">
+        <condition property="phpunit.include.path" value="" else="--include-path '${in.phpunit.include.path}'">
+            <equals arg1="${in.phpunit.include.path}" arg2="$${in.phpunit.include.path}" trim="true" />
+        </condition>
+
+        <condition property="phpunit.conf.file" value="${basedir}/phpunit.xml">
+            <available file="${basedir}/phpunit.xml" />
+        </condition>
+
+        <condition property="phpunit.conf.file" value="${basedir}/phpunit.xml.dist">
+            <available file="${basedir}/phpunit.xml.dist" />
+        </condition>
+
+        <condition property="phpunit.conf" value="--configuration '${phpunit.conf.file}'" else="">
+            <available file="${phpunit.conf.file}" />
+        </condition>
+
+        <condition property="phpunit.dir" value="${commons.testdir.php}" else="">
+            <or>
+                <equals arg1="${phpunit.conf}" arg2="" trim="true" />
+                <not>
+                    <resourcecontains resource="${phpunit.conf.file}" substring="&lt;testsuites&gt;" />
+                </not>
+            </or>
+        </condition>
+
+        <exec executable="${commons.executable.php}"
+              failonerror="true"
+              dir="${commons.testdir.php}">
+
+            <env key="DSN" value="${in.ezcdatabase.dsn}" />
+
+            <arg value="-d" />
+            <arg value="memory_limit=1024M" />
+            <arg value="-d" />
+            <arg value="include_path=${pear.local.include.path}" />
+            <arg value="${pear.local.bindir}/phpunit" />
+            <arg line="${phpunit.include.path}" />
+            <arg line="${phpunit.conf}" />
+            <arg line="${phpunit.dir}" />
+        </exec>
+    </target>
+
 </project>
