@@ -430,7 +430,7 @@ class ezcQueryExpressionTest extends ezcDatabaseTestCase
 
             if ( $pgSQL_version >= 8 ) 
             {
-                $reference = 'MD5( name )';
+                $reference = 'MD5( name::text )';
             }
             else
             {
