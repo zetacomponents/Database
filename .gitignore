@@ -5,3 +5,4 @@ extract
 .pear
 composer.phar
 build
+vagrant/.vagrant
