@@ -78,7 +78,7 @@ class ezcQueryExpressionPgsql extends ezcQueryExpression
         $column = $this->getIdentifier( $column );
         if ( $this->version > 7 )
         {
-            return "MD5( {$column} )";
+            return "MD5( {$column}::text )";
         }
         else
         {
