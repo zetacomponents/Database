@@ -20,13 +20,19 @@
 
         <common.enabled.antcall target="-phpunit:run-integration-no-logs" 
                                 property="phpunit.enabled">
+            <param name="in.ezcdatabase.dsn" value="${ezc.dsn.sqlite}" />
+            <param name="in.phpunit.include.path" value="${in.phpunit.include.path}" />
+        </common.enabled.antcall>
+
+        <common.enabled.antcall target="-phpunit:run-integration-no-logs" 
+                                property="phpunit.enabled">
             <param name="in.ezcdatabase.dsn" value="${ezc.dsn.mysql}" />
             <param name="in.phpunit.include.path" value="${in.phpunit.include.path}" />
         </common.enabled.antcall>
 
         <common.enabled.antcall target="-phpunit:run-integration-no-logs" 
                                 property="phpunit.enabled">
-            <param name="in.ezcdatabase.dsn" value="${ezc.dsn.sqlite}" />
+            <param name="in.ezcdatabase.dsn" value="${ezc.dsn.pgsql}" />
             <param name="in.phpunit.include.path" value="${in.phpunit.include.path}" />
         </common.enabled.antcall>
     </target>
