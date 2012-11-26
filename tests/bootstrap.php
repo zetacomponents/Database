@@ -12,3 +12,6 @@ phpunit
 EOT
        );
 }
+
+ini_set( "date.timezone", "UTC" );
+
