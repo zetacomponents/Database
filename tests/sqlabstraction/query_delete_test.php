@@ -25,26 +25,21 @@
  * @subpackage Tests
  */
 
+require_once __DIR__ . '/../test_case.php';
+
 /**
  * Testing the SQL expression abstraction layer for INSERT queries.
  *
  * @package Database
  * @subpackage Tests
  */
-class ezcQueryDeleteTest extends ezcTestCase
+class ezcQueryDeleteTest extends ezcDatabaseTestCase
 {
     private $q;
 
     protected function setUp()
     {
-        try
-        {
-            $db = ezcDbInstance::get();
-        }
-        catch ( Exception $e )
-        {
-            $this->markTestSkipped();
-        }
+        $db = parent::setUp();
 
         $this->q = new ezcQueryDelete( $db );
         try

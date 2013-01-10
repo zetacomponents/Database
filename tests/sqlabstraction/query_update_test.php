@@ -25,25 +25,21 @@
  * @subpackage Tests
  */
 
+require_once __DIR__ . '/../test_case.php';
+
 /**
  * Testing the SQL expression abstraction layer for INSERT queries.
  *
  * @package Database
  * @subpackage Tests
  */
-class ezcQueryUpdateTest extends ezcTestCase
+class ezcQueryUpdateTest extends ezcDatabaseTestCase
 {
     private $q;
 
     protected function setUp()
     {
-        try {
-            $db = ezcDbInstance::get();
-        }
-        catch ( Exception $e )
-        {
-            $this->markTestSkipped();
-        }
+        $db = parent::setUp();
 
         $this->assertNotNull( $db, 'Database instance is not initialized.' );
 
@@ -219,6 +215,11 @@ class ezcQueryUpdateTest extends ezcTestCase
     // test for bug 10777
     function testUpdateWithFalseTest()
     {
+        if ( !class_exists( "ezcDbSchema" ) )
+        {
+            $this->markTestSkipped( "Test requires the DB Schema component." );
+        }
+
         // create the database
         $db = ezcDbInstance::get();
         // open schema

@@ -25,6 +25,8 @@
  * @subpackage Tests
  */
 
+require_once __DIR__ . '/../test_case.php';
+
 class TestSubSelect extends ezcQuerySelect
 {
     public $db;
@@ -73,20 +75,14 @@ class TestSubSelect extends ezcQuerySelect
  * @subpackage Tests
  * @todo, test with null input values
  */
-class ezcQuerySubSelectTest extends ezcTestCase
+class ezcQuerySubSelectTest extends ezcDatabaseTestCase
 {
     private $q; // query
     private $e; // queryExpression
+
     protected function setUp()
     {
-        try
-        {
-            $db = ezcDbInstance::get();
-        }
-        catch ( Exception $e )
-        {
-            $this->markTestSkipped();
-        }
+        $db = parent::setUp();
 
         $this->q = new TestSubSelect( $db );
         $this->e = $this->q->expr;
