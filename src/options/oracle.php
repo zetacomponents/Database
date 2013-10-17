@@ -51,7 +51,7 @@ class ezcDbOracleOptions extends ezcBaseOptions
      */
     public function __construct( array $options = array() )
     {
-        $this->quoteIdentifier = self::QUOTES_UNTOUCHED;
+        $this->quoteIdentifier = self::QUOTES_COMPLIANT;
 
         parent::__construct( $options );
     }
