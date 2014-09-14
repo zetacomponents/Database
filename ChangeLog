@@ -1,7 +1,12 @@
-1.4.7 - [RELEASEDATE]
+1.5 - Sunday 14 September 2014
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - Fixed issue #16208: Warning in ezcQuery alias function
+- Fixed: Adjusted source headers of Database to Apache license.
+- Updated: Moving copyright information to NOTICE files.
+- Fixed: Updated copyright dates in NOTICE files.
+- Remove custom test runner.
+- Added composer.json
 
 
 1.4.6 - Monday 27 July 2009
