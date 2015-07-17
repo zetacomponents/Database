@@ -25,26 +25,16 @@
  * @subpackage Tests
  */
 
+require_once __DIR__ . '/test_case.php';
+
 /**
  * Test the handler classes.
  *
  * @package Database
  * @subpackage Tests
  */
-class ezcDatabaseHandlerTest extends ezcTestCase
+class ezcDatabaseHandlerTest extends ezcDatabaseTestCase
 {
-    protected function setUp()
-    {
-        try
-        {
-            $db = ezcDbInstance::get();
-        }
-        catch ( Exception $e )
-        {
-            $this->markTestSkipped();
-        }
-    }
-
     public function testConstructorNoDatabaseName()
     {
         try

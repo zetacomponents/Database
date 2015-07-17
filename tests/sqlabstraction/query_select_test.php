@@ -25,6 +25,8 @@
  * @subpackage Tests
  */
 
+require_once __DIR__ . '/../test_case.php';
+
 class TestSelect extends ezcQuerySelect
 {
     // @todo: Do we need the below? We use them for testing now, but
@@ -76,21 +78,14 @@ class TestSelect extends ezcQuerySelect
  * @subpackage Tests
  * @todo, test with null input values
  */
-class ezcQuerySelectTest extends ezcTestCase
+class ezcQuerySelectTest extends ezcDatabaseTestCase
 {
     private $q; // query
     private $e; // queryExpression
 
     protected function setUp()
     {
-        try
-        {
-            $db = ezcDbInstance::get();
-        }
-        catch ( Exception $e )
-        {
-            $this->markTestSkipped();
-        }
+        $db = parent::setUp();
 
         $this->q = new TestSelect( $db );
         $this->e = $this->q->expr;

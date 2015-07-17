@@ -8,9 +8,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -25,51 +25,38 @@
  * @subpackage Tests
  */
 
-require_once __DIR__ . '/test_case.php';
-require_once 'test_classes.php';
-
 /**
- * Test the delayed init for instance class
+ * Test the handler classes.
  *
  * @package Database
  * @subpackage Tests
  */
-class ezcDatabaseInstanceDelayedInitTest extends ezcDatabaseTestCase
+abstract class ezcDatabaseTestCase extends ezcTestCase
 {
-    private $default;
+    /**
+     * We are using a static variable here, because otherwise too many
+     * connections to the database will be opened (and not closed again). This
+     * would overload the DB.
+     */
+    private static $connection;
 
-    public function setUp()
+    protected function setUp()
     {
-        parent::setUp();
-
-        if ( !ezcBaseFeatures::hasExtensionSupport( 'pdo_sqlite') )
+        if ( !self::$connection )
         {
-            $this->markTestSkipped();
-            return;
+            try
+            {
+                $dsn = getenv( 'DSN' ) ?: 'sqlite://:memory:';
+                self::$connection = ezcDbFactory::create( $dsn );
+                ezcDbInstance::set( self::$connection );
+            }
+            catch ( Exception $e )
+            {
+                $this->markTestSkipped( $e->getMessage() );
+            }
         }
-    }
 
-    public function testDelayedInit1()
-    {
-        ezcBaseInit::setCallback( 'ezcInitDatabaseInstance', 'testDelayedInitDatabaseInstance' );
-        $instance1 = ezcDbInstance::get( 'delayed1' );
-    }
-
-    public function testDelayedInit2()
-    {
-        try
-        {
-            $instance2 = ezcDbInstance::get( 'delayed2' );
-        }
-        catch ( ezcDbHandlerNotFoundException $e )
-        {
-            $this->assertEquals( "Could not find the database handler: 'delayed2'.", $e->getMessage() );
-        }
-    }
-
-    public static function suite()
-    {
-         return new PHPUnit_Framework_TestSuite( "ezcDatabaseInstanceDelayedInitTest" );
+        return self::$connection;
     }
 }
 

@@ -25,6 +25,8 @@
  * @subpackage Tests
  */
 
+require_once __DIR__ . '/../test_case.php';
+
 /**
  * Testing the SQL expression abstraction layer.
  * This file tests that the methods actually produce correct output for the base
@@ -35,7 +37,7 @@
  * @subpackage Tests
  * @todo, test with null input values
  */
-class ezcQueryExpressionTest extends ezcTestCase
+class ezcQueryExpressionTest extends ezcDatabaseTestCase
 {
     private $q;
     private $e;
@@ -43,14 +45,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     protected function setUp()
     {
-        
-        try {
-            $this->db = ezcDbInstance::get();
-        }
-        catch ( Exception $e )
-        {
-            $this->markTestSkipped();
-        }
+        $this->db = parent::setUp();
 
         $this->q = $this->db->createSelectQuery();
         $this->e = $this->db->createExpression();
@@ -435,7 +430,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
             if ( $pgSQL_version >= 8 ) 
             {
-                $reference = 'MD5( name )';
+                $reference = 'MD5( name::text )';
             }
             else
             {
