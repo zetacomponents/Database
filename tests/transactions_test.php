@@ -70,9 +70,7 @@ class ezcDatabaseTransactionsTest extends ezcTestCase
     {
         try
         {
-            $dbparams = ezcTestSettings::getInstance()->db->dsn;
-            MyDB::setParams( $dbparams );
-            $this->db = MyDB::create();
+            $this->db = ezcDbInstance::get();
         }
         catch ( Exception $e )
         {
