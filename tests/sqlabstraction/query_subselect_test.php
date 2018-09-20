@@ -92,7 +92,7 @@ class ezcQuerySubSelectTest extends ezcTestCase
         $this->e = $this->q->expr;
     }
 
-    public function testSubSelect()
+    public function __construct()
     {
         $reference = '( SELECT column FROM table WHERE id = 1 )';
         $q2 = $this->q->subSelect();
