@@ -174,7 +174,7 @@ class ezcQuerySelectSqlite extends ezcQuerySelect
             $val = current( $reversedTables );
             $oneItemResult .= $val;
 
-            foreach( $reversedConditions as $key => $nextCondition )
+            foreach ( $reversedConditions as $key => $nextCondition )
             {
                 $nextTable = next( $reversedTables );
                 $oneItemResult .= " LEFT JOIN {$nextTable} ON {$nextCondition}";
