@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -188,24 +188,24 @@ class ezcQueryExpression
     }
 
     /**
-     * Sets the mode of quoting for parameters passed 
+     * Sets the mode of quoting for parameters passed
      * to SQL functions and operators.
-     * 
+     *
      * Quoting mode is set to ON by default.
      * $q->expr->in( 'column1', 'Hello', 'world' ) will
-     * produce SQL "column1 IN ( 'Hello', 'world' )" 
+     * produce SQL "column1 IN ( 'Hello', 'world' )"
      * ( note quotes in SQL ).
-     * 
-     * User must execute setValuesQuoting( false ) before call 
+     *
+     * User must execute setValuesQuoting( false ) before call
      * to function where quoting of parameters is not desirable.
      * Example:
      * <code>
      * $q->expr->setValuesQuoting( false );
-     * $q->expr->in( 'column1', 'SELECT * FROM table' ) 
+     * $q->expr->in( 'column1', 'SELECT * FROM table' )
      * </code>
      * This will produce SQL "column1 IN ( SELECT * FROM table )".
-     * 
-     * Quoting mode will remain unchanged until next call 
+     *
+     * Quoting mode will remain unchanged until next call
      * to setValuesQuoting().
      *
      * @param boolean $doQuoting - flag that switch quoting.
@@ -614,7 +614,7 @@ class ezcQueryExpression
         $values = ezcQuerySelect::arrayFlatten( array_slice( $args, 1 ) );
 
         $column = $this->getIdentifier( $column );
-        
+
         // Special handling of sub selects to avoid double braces
         if ( count( $values ) === 1 && $values[0] instanceof ezcQuerySubSelect )
         {
@@ -646,7 +646,7 @@ class ezcQueryExpression
                 }
             }
         }
-        
+
         return "{$column} IN ( " . join( ', ', $values ) . ' )';
     }
 
@@ -920,7 +920,7 @@ class ezcQueryExpression
 
     /**
      * Returns the SQL to change all characters to uppercase
-     * 
+     *
      * @param string $value
      * @return string
      */
@@ -932,7 +932,7 @@ class ezcQueryExpression
 
     /**
      * Returns the SQL to calculate the next lowest integer value from the number.
-     * 
+     *
      * @param string $number
      * @return string
      */
@@ -1058,8 +1058,8 @@ class ezcQueryExpression
     /**
      * Returns a searched CASE statement.
      *
-     * Accepts an arbitrary number of parameters. 
-     * The first parameter (array) must always be specified, the last 
+     * Accepts an arbitrary number of parameters.
+     * The first parameter (array) must always be specified, the last
      * parameter (string) specifies the ELSE result.
      *
      * Example:

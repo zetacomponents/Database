@@ -8,9 +8,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -47,7 +47,7 @@ class ezcDatabaseHandlerOracleTest extends ezcDatabaseHandlerBaseTest
     protected function tearDownTables()
     {
         $sequences = $this->db->query( "SELECT sequence_name FROM user_sequences" )->fetchAll();
-        
+
         foreach ( $sequences as $sequenceDef )
         {
             $this->db->query( 'DROP SEQUENCE "' . $sequenceDef['sequence_name'] . '"' );

@@ -8,9 +8,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -59,7 +59,7 @@ class TestSelect extends ezcQuerySelect
     {
         return $this->havingString;
     }
-    
+
     public function buildLimit()
     {
         return $this->limitString;
@@ -158,11 +158,11 @@ class ezcQuerySelectTest extends ezcTestCase
         $this->q->from( 'table1', array( 'table2', 'table3' ), 'table4' );
         $this->assertEquals( $reference, $this->q->buildFrom() );
         $this->q->reset();
-        
+
         $this->q->from( 'table1' )->from( array( 'table2', 'table3' ), 'table4' );
         $this->assertEquals( $reference, $this->q->buildFrom() );
         $this->q->reset();
-        
+
         $this->q->from( 'table1' )->from( 'table2')->from( 'table3' )->from( 'table4' );
         $this->assertEquals( $reference, $this->q->buildFrom() );
     }

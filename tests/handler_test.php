@@ -8,9 +8,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -113,7 +113,7 @@ class ezcDatabaseHandlerTest extends ezcTestCase
     public function testMssqlIdentifierQuotingUntouched()
     {
         $db = ezcDbInstance::get();
-        if ( get_class( $db ) != 'ezcDbHandlerMssql' ) 
+        if ( get_class( $db ) != 'ezcDbHandlerMssql' )
         {
             $this->markTestSkipped( 'Test defined for MS SQL handler class only.' );
         }
@@ -125,11 +125,11 @@ class ezcDatabaseHandlerTest extends ezcTestCase
     public function testMssqlIdentifierQuotingCompliant()
     {
         $db = ezcDbInstance::get();
-        if ( get_class( $db ) != 'ezcDbHandlerMssql' ) 
+        if ( get_class( $db ) != 'ezcDbHandlerMssql' )
         {
             $this->markTestSkipped( 'Test defined for MS SQL handler class only.' );
         }
-        $db->setOptions( new ezcDbMssqlOptions( array('quoteIdentifier' => ezcDbMssqlOptions::QUOTES_COMPLIANT ) ));        
+        $db->setOptions( new ezcDbMssqlOptions( array('quoteIdentifier' => ezcDbMssqlOptions::QUOTES_COMPLIANT ) ));
 
         $this->assertEquals( '"ezctesttable"', $db->quoteIdentifier( 'ezctesttable' ));
     }
@@ -137,7 +137,7 @@ class ezcDatabaseHandlerTest extends ezcTestCase
     public function testMssqlIdentifierQuotingLegacy()
     {
         $db = ezcDbInstance::get();
-        if ( get_class( $db ) != 'ezcDbHandlerMssql' ) 
+        if ( get_class( $db ) != 'ezcDbHandlerMssql' )
         {
             $this->markTestSkipped( 'Test defined for MS SQL handler class only.' );
         }
@@ -145,11 +145,11 @@ class ezcDatabaseHandlerTest extends ezcTestCase
 
         $this->assertEquals( '[ezctesttable]', $db->quoteIdentifier( 'ezctesttable' ));
     }
-        
+
     public function testMssqlIdentifierQuotingImpl()
     {
         $db = ezcDbInstance::get();
-        if ( get_class( $db ) != 'ezcDbHandlerMssql' ) 
+        if ( get_class( $db ) != 'ezcDbHandlerMssql' )
         {
             $this->markTestSkipped( 'Test defined for MS SQL handler class only.' );
         }
@@ -157,8 +157,8 @@ class ezcDatabaseHandlerTest extends ezcTestCase
         try {
             $db->query('CREATE TABLE '.$db->quoteIdentifier('group') . ' ( id INT )');
             $db->query('DROP TABLE '.$db->quoteIdentifier('group') );
-        } 
-        catch ( Exception $ex ) 
+        }
+        catch ( Exception $ex )
         {
             $this->fail( "Incorrect identifiers quoting ".$ex->getMessage() );
         }
@@ -166,7 +166,7 @@ class ezcDatabaseHandlerTest extends ezcTestCase
 
     public static function suite()
     {
-         return new PHPUnit_Framework_TestSuite( "ezcDatabaseHandlerTest" );
+         return new PHPUnit\Framework\TestSuite( "ezcDatabaseHandlerTest" );
     }
 }
 

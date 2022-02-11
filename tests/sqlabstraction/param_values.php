@@ -8,9 +8,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -107,8 +107,8 @@ class ezcParamValuesTest extends ezcTestCase
         $this->assertNotNull( $db, 'Database instance is not initialized.' );
 
         $db->exec( 'CREATE TABLE ' .
-            $db->quoteIdentifier( __CLASS__ ) . 
-            '( ' . 
+            $db->quoteIdentifier( __CLASS__ ) .
+            '( ' .
                 ( $this->boolColumn = $db->quoteIdentifier( 'bool' ) ) . ' ' . $this->columnMapping['bool'][get_class( $db )] . ' NULL, ' .
                 ( $this->intColumn =  $db->quoteIdentifier( 'int' )  ) . ' ' . $this->columnMapping['int' ][get_class( $db )] . ' NULL, ' .
                 ( $this->nullColumn = $db->quoteIdentifier( 'null' ) ) . ' ' . $this->columnMapping['null'][get_class( $db )] . ' NULL, ' .
@@ -139,9 +139,9 @@ class ezcParamValuesTest extends ezcTestCase
         $query = $db->createInsertQuery();
         $query
             ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
-            ->set( 
+            ->set(
                 $this->boolColumn,
-                $query->bindValue( true ) 
+                $query->bindValue( true )
             );
         $query->prepare()->execute();
     }
@@ -153,9 +153,9 @@ class ezcParamValuesTest extends ezcTestCase
         $query = $db->createInsertQuery();
         $query
             ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
-            ->set( 
+            ->set(
                 $this->boolColumn,
-                $query->bindValue( true, null, PDO::PARAM_BOOL ) 
+                $query->bindValue( true, null, PDO::PARAM_BOOL )
             );
         $query->prepare()->execute();
     }
@@ -167,9 +167,9 @@ class ezcParamValuesTest extends ezcTestCase
         $query = $db->createInsertQuery();
         $query
             ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
-            ->set( 
+            ->set(
                 $this->boolColumn,
-                $query->bindValue( 'some string', null, PDO::PARAM_BOOL ) 
+                $query->bindValue( 'some string', null, PDO::PARAM_BOOL )
             );
         $query->prepare()->execute();
     }
@@ -181,9 +181,9 @@ class ezcParamValuesTest extends ezcTestCase
         $query = $db->createInsertQuery();
         $query
             ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
-            ->set( 
+            ->set(
                 $this->intColumn,
-                $query->bindValue( 42 ) 
+                $query->bindValue( 42 )
             );
         $query->prepare()->execute();
     }
@@ -195,9 +195,9 @@ class ezcParamValuesTest extends ezcTestCase
         $query = $db->createInsertQuery();
         $query
             ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
-            ->set( 
+            ->set(
                 $this->intColumn,
-                $query->bindValue( 42, null, PDO::PARAM_INT ) 
+                $query->bindValue( 42, null, PDO::PARAM_INT )
             );
         $query->prepare()->execute();
     }
@@ -209,9 +209,9 @@ class ezcParamValuesTest extends ezcTestCase
         $query = $db->createInsertQuery();
         $query
             ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
-            ->set( 
+            ->set(
                 $this->intColumn,
-                $query->bindValue( '42 strings', null, PDO::PARAM_INT ) 
+                $query->bindValue( '42 strings', null, PDO::PARAM_INT )
             );
         $query->prepare()->execute();
     }
@@ -223,9 +223,9 @@ class ezcParamValuesTest extends ezcTestCase
         $query = $db->createInsertQuery();
         $query
             ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
-            ->set( 
+            ->set(
                 $this->strColumn,
-                $query->bindValue( 'some string' ) 
+                $query->bindValue( 'some string' )
             );
         $query->prepare()->execute();
     }
@@ -237,9 +237,9 @@ class ezcParamValuesTest extends ezcTestCase
         $query = $db->createInsertQuery();
         $query
             ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
-            ->set( 
+            ->set(
                 $this->strColumn,
-                $query->bindValue( 'some string', null, PDO::PARAM_INT ) 
+                $query->bindValue( 'some string', null, PDO::PARAM_INT )
             );
         $query->prepare()->execute();
     }
@@ -251,9 +251,9 @@ class ezcParamValuesTest extends ezcTestCase
         $query = $db->createInsertQuery();
         $query
             ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
-            ->set( 
+            ->set(
                 $this->strColumn,
-                $query->bindValue( true, null, PDO::PARAM_INT ) 
+                $query->bindValue( true, null, PDO::PARAM_INT )
             );
         $query->prepare()->execute();
     }
@@ -265,9 +265,9 @@ class ezcParamValuesTest extends ezcTestCase
         $query = $db->createInsertQuery();
         $query
             ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
-            ->set( 
+            ->set(
                 $this->clobColumn,
-                $query->bindValue( $this->clob ) 
+                $query->bindValue( $this->clob )
             );
         $query->prepare()->execute();
     }
@@ -279,9 +279,9 @@ class ezcParamValuesTest extends ezcTestCase
         $query = $db->createInsertQuery();
         $query
             ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
-            ->set( 
+            ->set(
                 $this->clobColumn,
-                $query->bindValue( $this->clob, null, PDO::PARAM_LOB ) 
+                $query->bindValue( $this->clob, null, PDO::PARAM_LOB )
             );
         $query->prepare()->execute();
     }
@@ -293,9 +293,9 @@ class ezcParamValuesTest extends ezcTestCase
         $query = $db->createInsertQuery();
         $query
             ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
-            ->set( 
+            ->set(
                 $this->clobColumn,
-                $query->bindValue( 42, null, PDO::PARAM_LOB ) 
+                $query->bindValue( 42, null, PDO::PARAM_LOB )
             );
         $query->prepare()->execute();
     }
@@ -307,9 +307,9 @@ class ezcParamValuesTest extends ezcTestCase
         $query = $db->createInsertQuery();
         $query
             ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
-            ->set( 
+            ->set(
                 $this->blobColumn,
-                $query->bindValue( $this->blob ) 
+                $query->bindValue( $this->blob )
             );
         $query->prepare()->execute();
     }
@@ -321,9 +321,9 @@ class ezcParamValuesTest extends ezcTestCase
         $query = $db->createInsertQuery();
         $query
             ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
-            ->set( 
+            ->set(
                 $this->blobColumn,
-                $query->bindValue( $this->blob, null, PDO::PARAM_LOB ) 
+                $query->bindValue( $this->blob, null, PDO::PARAM_LOB )
             );
         $query->prepare()->execute();
     }
@@ -335,9 +335,9 @@ class ezcParamValuesTest extends ezcTestCase
         $query = $db->createInsertQuery();
         $query
             ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
-            ->set( 
+            ->set(
                 $this->blobColumn,
-                $query->bindValue( 42, null, PDO::PARAM_LOB ) 
+                $query->bindValue( 42, null, PDO::PARAM_LOB )
             );
         $query->prepare()->execute();
     }

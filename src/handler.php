@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -57,7 +57,7 @@ abstract class ezcDbHandler extends PDO
      * implementation, if different for a specific handler. In some cases the
      * quoting start and end characters differ (e.g. ODBC), but mostly they are
      * the same.
-     * 
+     *
      * @var string
      */
     protected $identifierQuoteChars = array(
@@ -115,7 +115,7 @@ abstract class ezcDbHandler extends PDO
      *
      * This method can be used to choose more optimal query
      * for the given Database.
-     * 
+     *
      * note This is commented out because it breaks with PHP 5.2.
      *
      * @return string

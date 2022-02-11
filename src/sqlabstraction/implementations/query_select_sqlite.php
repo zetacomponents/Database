@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -38,7 +38,7 @@ class ezcQuerySelectSqlite extends ezcQuerySelect
 {
     /**
      * Store info for building emulation of right joins in FROM clause.
-     * 
+     *
      * This array contains null if there was no calls to rightJoin().
      * When call to rightJoin() occurs an item of right join info added.
      * Right join info is array that consists of two arrays: 'tables' and 'conditions'.
@@ -49,7 +49,7 @@ class ezcQuerySelectSqlite extends ezcQuerySelect
 
     /**
      * Store tables that appear in FROM clause.
-     * 
+     *
      * Used for building fromString every time when it requested
      */
     protected $fromTables = array();
@@ -83,9 +83,9 @@ class ezcQuerySelectSqlite extends ezcQuerySelect
      * from() accepts an arbitrary number of parameters. Each parameter
      * must contain either the name of a table or an array containing
      * the names of tables..
-     * from() could be invoked several times. All provided arguments 
+     * from() could be invoked several times. All provided arguments
      * added to the end of $fromString.
-     * 
+     *
      * Additional actions performed to emulate right joins in SQLite.
      *
      * Example:
@@ -93,7 +93,7 @@ class ezcQuerySelectSqlite extends ezcQuerySelect
      * // the following code will produce the SQL
      * // SELECT id FROM t2 LEFT JOIN t1 ON t1.id = t2.id
      * $q->select( 'id' )->from( $q->rightJoin( 't1', 't2', 't1.id', 't2.id' ) );
-     * 
+     *
      * // the following code will produce the same SQL
      * // SELECT id FROM t2 LEFT JOIN t1 ON t1.id = t2.id
      * $q->select( 'id' )->from( 't1' )->rightJoin( 't2', 't1.id', 't2.id' );
@@ -120,14 +120,14 @@ class ezcQuerySelectSqlite extends ezcQuerySelect
 
         // adding right join part of query to the end of fromString.
         $rightJoinPart = $this->buildRightJoins();
-        if ( $rightJoinPart != '' ) 
+        if ( $rightJoinPart != '' )
         {
             $this->fromString .= ', '.$rightJoinPart;
         }
 
         // adding new empty entry to $rightJoins if last entry was already filled
         $lastRightJoin = end( $this->rightJoins );
-        if ( $lastRightJoin != null ) 
+        if ( $lastRightJoin != null )
         {
             $this->rightJoins[] = null; // adding empty stub to the rightJoins
                                         // it could be filled by next rightJoin()
@@ -136,21 +136,21 @@ class ezcQuerySelectSqlite extends ezcQuerySelect
     }
 
     /**
-     * Returns SQL string with part of FROM clause that performs right join emulation. 
-     * 
+     * Returns SQL string with part of FROM clause that performs right join emulation.
+     *
      * SQLite don't support right joins directly but there is workaround.
-     * identical result could be acheived using right joins for tables in reverce order.
-     * 
-     * String created from entries of $rightJoins. 
+     * identical result could be acheived using right joins for tables in reverse order.
+     *
+     * String created from entries of $rightJoins.
      * One entry is a complete table_reference clause of SQL FROM clause.
-     * 
+     *
      * <code>
      * rightJoins[0][tables] = array( 'table1', 'table2', 'table3' )
      * rightJoins[0][conditions] = array( condition1, condition2 )
      * </code>
      * forms SQL: 'table3 LEFT JOIN table2 condition2 ON LEFT JOIN table1 ON condition1'.
-     * 
-     * 
+     *
+     *
      * @return string the SQL call including all right joins set in query.
      */
     private function buildRightJoins()
@@ -160,12 +160,12 @@ class ezcQuerySelectSqlite extends ezcQuerySelect
         foreach ( $this->rightJoins as $rJoinPart )
         {
             $oneItemResult = '';
-            if ( $rJoinPart === null ) 
+            if ( $rJoinPart === null )
             {
                 break; // this is last empty entry so cancel adding.
             }
 
-            // reverse lists of tables and conditions to make LEFT JOIN 
+            // reverse lists of tables and conditions to make LEFT JOIN
             // that will produce result equal to original right join.
             $reversedTables = array_reverse( $rJoinPart['tables'] );
             $reversedConditions = array_reverse( $rJoinPart['conditions'] );
@@ -187,11 +187,11 @@ class ezcQuerySelectSqlite extends ezcQuerySelect
 
     /**
      * Returns the SQL for a right join or prepares $fromString for a right join.
-     * 
+     *
      * This method could be used in two forms:
      *
      * <b>rightJoin( 't2', $joinCondition )</b>
-     * 
+     *
      * Takes 2 string arguments and returns ezcQuery.
      *
      * The first parameter is the name of the table to join with. The table to
@@ -208,14 +208,14 @@ class ezcQuerySelectSqlite extends ezcQuerySelect
      * </code>
      *
      * <b>rightJoin( 't2', 't1.id', 't2.id' )</b>
-     * 
+     *
      * Takes 3 string arguments and returns ezcQuery. This is a simplified form
      * of the 2 parameter version.  rightJoin( 't2', 't1.id', 't2.id' ) is
      * equal to rightJoin( 't2', $this->expr->eq('t1.id', 't2.id' ) );
      *
      * The first parameter is the name of the table to join with. The table to
      * which is joined should have been previously set with the from() method.
-     * 
+     *
      * The second parameter is the name of the column on the table set
      * previously with the from() method and the third parameter the name of
      * the column to join with on the table that was specified in the first
@@ -247,11 +247,11 @@ class ezcQuerySelectSqlite extends ezcQuerySelect
         }
 
         // deprecated syntax
-        if ( $passedArgsCount == 4 ) 
+        if ( $passedArgsCount == 4 )
         {
             if ( is_string( $args[0] ) && is_string( $args[1] ) &&
-                 is_string( $args[2] ) && is_string( $args[3] ) 
-               ) 
+                 is_string( $args[2] ) && is_string( $args[3] )
+               )
             {
                 $table1 = $this->getIdentifier( $args[0] );
                 $table2 = $this->getIdentifier( $args[1] );
@@ -273,19 +273,19 @@ class ezcQuerySelectSqlite extends ezcQuerySelect
         }
 
         $table = '';
-        if ( !is_string( $args[0] ) ) 
+        if ( !is_string( $args[0] ) )
         {
-            throw new ezcQueryInvalidException( 'SELECT', 
+            throw new ezcQueryInvalidException( 'SELECT',
                      'Inconsistent type of first argument passed to rightJoin(). Should be string with name of table.' );
         }
         $table = $this->getIdentifier( $args[0] );
 
         $condition = '';
-        if ( $passedArgsCount == 2 && is_string( $args[1] ) ) 
+        if ( $passedArgsCount == 2 && is_string( $args[1] ) )
         {
             $condition = $args[1];
         }
-        else if ( $passedArgsCount == 3 && is_string( $args[1] ) && is_string( $args[2] ) ) 
+        else if ( $passedArgsCount == 3 && is_string( $args[1] ) && is_string( $args[2] ) )
         {
             $arg1 = $this->getIdentifier( $args[1] );
             $arg2 = $this->getIdentifier( $args[2] );
@@ -305,13 +305,13 @@ class ezcQuerySelectSqlite extends ezcQuerySelect
             array_pop( $this->rightJoins );
             $this->rightJoins[count( $this->rightJoins )]['tables'][] = $lastTable;
         }
-        
+
         if ( $table != '' && $condition != '' )
         {
             $this->rightJoins[count( $this->rightJoins ) - 1]['tables'][] = $table;
             $this->rightJoins[count( $this->rightJoins ) - 1]['conditions'][] = $condition;
         }
-         
+
         // build fromString using fromTables and add right joins stuff to te end.
         $this->fromString = 'FROM ' . join( ', ', $this->fromTables );
         $this->fromString .= $this->buildRightJoins();

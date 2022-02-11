@@ -8,9 +8,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -240,7 +240,7 @@ class ezcQueryInsertTest extends ezcTestCase
         {
             $db->exec( "CREATE SEQUENCE query_test_id_seq start with 1 increment by 1 nomaxvalue" );
         }
-        else if ( $db->getName() == 'pgsql' ) 
+        else if ( $db->getName() == 'pgsql' )
         {
             $db->exec( "CREATE SEQUENCE query_test_id_seq START 1" );
         }
@@ -263,7 +263,7 @@ class ezcQueryInsertTest extends ezcTestCase
             ->set( 'employees', 10 );
         $stmt = $q->prepare();
         $stmt->execute();
-        
+
         // check that it was actually correctly set
         $q = $db->createSelectQuery(); // get select query
         $q->select( '*' )->from( 'query_test' )->where( $q->expr->eq( 'id', 2 ) );
