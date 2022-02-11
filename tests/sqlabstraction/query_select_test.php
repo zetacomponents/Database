@@ -81,7 +81,7 @@ class ezcQuerySelectTest extends ezcTestCase
     private $q; // query
     private $e; // queryExpression
 
-    protected function setUp()
+    protected function setUp() : void
     {
         try
         {
@@ -645,7 +645,7 @@ class ezcQuerySelectTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( 'ezcQuerySelectTest' );
+        return new PHPUnit\Framework\TestSuite( 'ezcQuerySelectTest' );
     }
 }
 ?>

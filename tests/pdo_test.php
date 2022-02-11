@@ -33,7 +33,7 @@
  */
 class ezcPdoTest extends ezcTestCase
 {
-    protected function setUp()
+    protected function setUp() : void
     {
         try
         {
@@ -56,7 +56,7 @@ class ezcPdoTest extends ezcTestCase
 
     }
 
-    protected function tearDown()
+    protected function tearDown() : void
     {
         $db = ezcDbInstance::get();
         $db->exec( 'DROP TABLE query_test' );
@@ -116,7 +116,7 @@ class ezcPdoTest extends ezcTestCase
 
     public static function suite()
     {
-         return new PHPUnit_Framework_TestSuite( "ezcPdoTest" );
+         return new PHPUnit\Framework\TestSuite( "ezcPdoTest" );
     }
 }
 

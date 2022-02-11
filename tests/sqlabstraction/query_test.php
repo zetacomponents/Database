@@ -61,7 +61,7 @@ class ezcQueryTest extends ezcTestCase
 {
     private $q;
 
-    protected function setUp()
+    protected function setUp() : void
     {
         try
         {
@@ -75,7 +75,7 @@ class ezcQueryTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( 'ezcQueryTest' );
+        return new PHPUnit\Framework\TestSuite( 'ezcQueryTest' );
     }
 
     public function testHasAliases()

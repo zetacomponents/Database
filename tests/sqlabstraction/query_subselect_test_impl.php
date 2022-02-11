@@ -40,7 +40,7 @@ class ezcQuerySubSelectTestImpl extends ezcTestCase
     private $e;
     private $db;
 
-    protected function setUp()
+    protected function setUp() : void
     {
         try
         {
@@ -78,7 +78,7 @@ class ezcQuerySubSelectTestImpl extends ezcTestCase
         $this->db->exec( "INSERT INTO query_test2 VALUES ( 5, 'Intel', 'USA', 5000 )" );
     }
 
-    protected function tearDown()
+    protected function tearDown() : void
     {
         if ( $this->db === null ) return;
 
@@ -253,7 +253,7 @@ class ezcQuerySubSelectTestImpl extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( 'ezcQuerySubSelectTestImpl' );
+        return new PHPUnit\Framework\TestSuite( 'ezcQuerySubSelectTestImpl' );
     }
 }
 ?>

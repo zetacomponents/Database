@@ -35,10 +35,10 @@ class ezcRdbmsLimitTest extends ezcTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( 'ezcRdbmsLimitTest' );
+        return new PHPUnit\Framework\TestSuite( 'ezcRdbmsLimitTest' );
     }
 
-    protected function setUp()
+    protected function setUp() : void
     {
         try
         {
@@ -53,7 +53,7 @@ class ezcRdbmsLimitTest extends ezcTestCase
 
     }
 
-    protected function tearDown()
+    protected function tearDown() : void
     {
     }
 

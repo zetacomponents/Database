@@ -37,7 +37,7 @@ class ezcDatabaseHandlerBaseTest extends ezcTestCase
 
     protected $db;
 
-    protected function setUp()
+    protected function setUp() : void
     {
         try
         {
@@ -62,7 +62,7 @@ class ezcDatabaseHandlerBaseTest extends ezcTestCase
         $this->setUpData();
     }
 
-    protected function tearDown()
+    protected function tearDown() : void
     {
         if ( $this->db === null ) return;
 

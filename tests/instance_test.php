@@ -35,7 +35,7 @@ class ezcDatabaseInstanceTest extends ezcTestCase
 {
     private $default;
 
-    protected function setUp()
+    protected function setUp() : void
     {
         try
         {
@@ -47,7 +47,7 @@ class ezcDatabaseInstanceTest extends ezcTestCase
         }
     }
 
-    protected function tearDown()
+    protected function tearDown() : void
     {
         ezcDbInstance::reset();
         ezcDbInstance::set( $this->default );
@@ -56,7 +56,6 @@ class ezcDatabaseInstanceTest extends ezcTestCase
     public function testGetWithIdentifierValid()
     {
         $db = ezcDbInstance::get();
-        $db = clone( $db );
         $db->a = "something";
         ezcDbInstance::set( $db, 'secondary' );
         $this->assertEquals( true, isset( ezcDbInstance::get( 'secondary' )->a ) );
@@ -65,7 +64,6 @@ class ezcDatabaseInstanceTest extends ezcTestCase
     public function testChooseDefault()
     {
         $db = ezcDbInstance::get();
-        $db = clone $db;
         $db->a = "something";
         ezcDbInstance::set( $db, 'secondary' );
 
@@ -90,7 +88,7 @@ class ezcDatabaseInstanceTest extends ezcTestCase
 
     public static function suite()
     {
-         return new PHPUnit_Framework_TestSuite( "ezcDatabaseInstanceTest" );
+         return new PHPUnit\Framework\TestSuite( "ezcDatabaseInstanceTest" );
     }
 }
 

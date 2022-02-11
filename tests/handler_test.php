@@ -33,7 +33,7 @@
  */
 class ezcDatabaseHandlerTest extends ezcTestCase
 {
-    protected function setUp()
+    protected function setUp() : void
     {
         try
         {

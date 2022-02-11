@@ -37,7 +37,7 @@ class ezcDatabaseInstanceDelayedInitTest extends ezcTestCase
 {
     private $default;
 
-    public function setUp()
+    public function setUp() : void
     {
         if ( !ezcBaseFeatures::hasExtensionSupport( 'pdo_sqlite') )
         {
@@ -66,7 +66,7 @@ class ezcDatabaseInstanceDelayedInitTest extends ezcTestCase
 
     public static function suite()
     {
-         return new PHPUnit_Framework_TestSuite( "ezcDatabaseInstanceDelayedInitTest" );
+         return new PHPUnit\Framework\TestSuite( "ezcDatabaseInstanceDelayedInitTest" );
     }
 }
 

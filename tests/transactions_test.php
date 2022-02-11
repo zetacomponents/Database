@@ -66,7 +66,7 @@ class MyDB
  */
 class ezcDatabaseTransactionsTest extends ezcTestCase
 {
-    protected function setUp()
+    protected function setUp() : void
     {
         try
         {
@@ -202,7 +202,7 @@ class ezcDatabaseTransactionsTest extends ezcTestCase
 
     public static function suite()
     {
-         return new PHPUnit_Framework_TestSuite( "ezcDatabaseTransactionsTest" );
+         return new PHPUnit\Framework\TestSuite( "ezcDatabaseTransactionsTest" );
     }
 }
 ?>

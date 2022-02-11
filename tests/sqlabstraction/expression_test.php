@@ -41,9 +41,9 @@ class ezcQueryExpressionTest extends ezcTestCase
     private $e;
     private $db;
 
-    protected function setUp()
+    protected function setUp() : void
     {
-        
+
         try {
             $this->db = ezcDbInstance::get();
         }
@@ -83,7 +83,7 @@ class ezcQueryExpressionTest extends ezcTestCase
         $this->db->exec( "INSERT INTO query_test VALUES ( 4, 'IBM', 'Germany', null, null )" );
     }
 
-    protected function tearDown()
+    protected function tearDown() : void
     {
         if ( $this->db === null ) return;
 
@@ -92,7 +92,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( 'ezcQueryExpressionTest' );
+        return new PHPUnit\Framework\TestSuite( 'ezcQueryExpressionTest' );
     }
 
     public function testLorNone()
@@ -1798,7 +1798,7 @@ class ezcQueryExpressionTest extends ezcTestCase
         $this->q->select( $this->e->unixTimestamp( $this->q->expr->now() ) );
         $stmt = $this->q->prepare();
         $stmt->execute();
-        $this->assertEquals( time(), $stmt->fetchColumn( 0 ), '', 1 ); // with delta 1
+        $this->assertEqualsWithDelta( time(), $stmt->fetchColumn( 0 ), 1 ); // with delta 1
     }
 
     public function testDateSubImplNow()
@@ -1806,7 +1806,7 @@ class ezcQueryExpressionTest extends ezcTestCase
         $this->q->select( $this->e->dateSub( $this->q->expr->now(), 1, 'MINUTE' ) );
         $stmt = $this->q->prepare();
         $stmt->execute();
-        $this->assertEquals( time() - 60, strtotime( $stmt->fetchColumn( 0 ) ), '', 1 ); // with delta 1
+        $this->assertEqualsWithDelta( time() - 60, strtotime( $stmt->fetchColumn( 0 ) ), 1 ); // with delta 1
     }
 
     public function testDateAddImplNow()
@@ -1814,7 +1814,7 @@ class ezcQueryExpressionTest extends ezcTestCase
         $this->q->select( $this->e->dateAdd( $this->q->expr->now(), 1, 'MINUTE' ) );
         $stmt = $this->q->prepare();
         $stmt->execute();
-        $this->assertEquals( time() + 60, strtotime( $stmt->fetchColumn( 0 ) ), '', 1 ); // with delta 1
+        $this->assertEqualsWithDelta( time() + 60, strtotime( $stmt->fetchColumn( 0 ) ), 1 ); // with delta 1
     }
 
     public function testDateExtractImplNow()
@@ -1824,7 +1824,7 @@ class ezcQueryExpressionTest extends ezcTestCase
         $stmt->execute();
         $result = $stmt->fetchColumn( 0 );
         $this->assertSame( (double)$result, floor( (double)$result ) );
-        $this->assertEquals( (int)date( 's' ), (int)$result, '', 1 ); // with delta 1
+        $this->assertEqualsWithDelta( (int)date( 's' ), (int)$result, 1 ); // with delta 1
     }
 }
 ?>

@@ -91,10 +91,10 @@ class ezcParamValuesTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( 'ezcParamValuesTest' );
+        return new PHPUnit\Framework\TestSuite( 'ezcParamValuesTest' );
     }
 
-    protected function setUp()
+    protected function setUp() : void
     {
         try {
             $db = ezcDbInstance::get();
@@ -123,7 +123,7 @@ class ezcParamValuesTest extends ezcTestCase
         $this->clob = str_repeat( "test", 1024 );
     }
 
-    protected function tearDown()
+    protected function tearDown() : void
     {
         $db = ezcDbInstance::get();
 

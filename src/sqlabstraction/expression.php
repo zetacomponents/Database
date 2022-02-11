@@ -128,7 +128,7 @@ class ezcQueryExpression
      */
     protected function getIdentifier( $alias )
     {
-        $aliasParts = explode( '.', $alias );
+        $aliasParts = explode( '.', $alias === null ? '' : $alias );
         $identifiers = array();
         // If the alias consists of one part, then we just look it up in the
         // array. If we find it, we use it, otherwise we return the name as-is

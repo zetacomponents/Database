@@ -39,7 +39,7 @@ class ezcQuerySelectJoinTestImpl extends ezcTestCase
     private $e;
     private $db;
 
-    protected function setUp()
+    protected function setUp() : void
     {
         try
         {
@@ -92,7 +92,7 @@ class ezcQuerySelectJoinTestImpl extends ezcTestCase
         $this->db->exec( "INSERT INTO in_use VALUES ( 2006, 1005, 2, 1 )" );
     }
 
-    protected function tearDown()
+    protected function tearDown() : void
     {
         if ( $this->db === null ) return;
 
@@ -441,7 +441,7 @@ class ezcQuerySelectJoinTestImpl extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( 'ezcQuerySelectJoinTestImpl' );
+        return new PHPUnit\Framework\TestSuite( 'ezcQuerySelectJoinTestImpl' );
     }
 }
 ?>

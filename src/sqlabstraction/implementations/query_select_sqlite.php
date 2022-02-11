@@ -171,13 +171,17 @@ class ezcQuerySelectSqlite extends ezcQuerySelect
             $reversedConditions = array_reverse( $rJoinPart['conditions'] );
 
             // adding first table.
-            list( $key, $val ) = each( $reversedTables ); 
+            $key = key( $reversedTables );
+            $val = current( $reversedTables );
+            next( $reversedTables );
             $oneItemResult .= $val;
 
-            while ( list( $key, $nextCondition ) = each( $reversedConditions ) )
+            foreach( $reversedConditions as $key => $nextCondition )
             {
-                list( $key2, $nextTable ) = each( $reversedTables );   
-               $oneItemResult .= " LEFT JOIN {$nextTable} ON {$nextCondition}";
+                $key2 = key( $reversedTables );
+                $nextTable = current( $reversedTables );
+                next( $reversedTables );
+                $oneItemResult .= " LEFT JOIN {$nextTable} ON {$nextCondition}";
             }
             $resultArray[] = $oneItemResult;
         }

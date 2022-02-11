@@ -77,7 +77,7 @@ class ezcQuerySubSelectTest extends ezcTestCase
 {
     private $q; // query
     private $e; // queryExpression
-    protected function setUp()
+    protected function setUp() : void
     {
         try
         {
@@ -287,7 +287,7 @@ class ezcQuerySubSelectTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( 'ezcQuerySubSelectTest' );
+        return new PHPUnit\Framework\TestSuite( 'ezcQuerySubSelectTest' );
     }
 }
 ?>

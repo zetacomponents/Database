@@ -35,7 +35,7 @@ class ezcQueryInsertTest extends ezcTestCase
 {
     private $q;
 
-    protected function setUp()
+    protected function setUp() : void
     {
         try
         {
@@ -58,7 +58,7 @@ class ezcQueryInsertTest extends ezcTestCase
 
     }
 
-    protected function tearDown()
+    protected function tearDown() : void
     {
         $db = ezcDbInstance::get();
         $db->exec( 'DROP TABLE query_test' );
@@ -283,7 +283,7 @@ class ezcQueryInsertTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( 'ezcQueryInsertTest' );
+        return new PHPUnit\Framework\TestSuite( 'ezcQueryInsertTest' );
     }
 }
 ?>
