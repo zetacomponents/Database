@@ -2,3 +2,4 @@ vendor
 run-tests-tmp
 extract
 composer.lock
+.phpcs-cache
