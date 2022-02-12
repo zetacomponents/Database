@@ -286,7 +286,7 @@ class ezcQuerySelect extends ezcQuery
         {
             $this->selectString = 'SELECT DISTINCT ';
         }
-        elseif ( strpos ( $this->selectString, 'DISTINCT' ) === false )
+        elseif ( strpos( $this->selectString, 'DISTINCT' ) === false )
         {
             throw new ezcQueryInvalidException(
                 'SELECT',
@@ -431,8 +431,10 @@ class ezcQuerySelect extends ezcQuery
         $table = '';
         if ( !is_string( $args[0] ) )
         {
-            throw new ezcQueryInvalidException( 'SELECT',
-                     "Inconsistent type of first argument passed to {$type}Join(). Should be string with name of table." );
+            throw new ezcQueryInvalidException(
+                'SELECT',
+                "Inconsistent type of first argument passed to {$type}Join(). Should be string with name of table."
+            );
         }
         $table = $this->getIdentifier( $args[0] );
 
@@ -676,7 +678,6 @@ class ezcQuerySelect extends ezcQuery
         return $this;
     }
 
-
     // limit, order and group
 
     /**
@@ -907,7 +908,6 @@ class ezcQuerySelect extends ezcQuery
         }
         return $query;
     }
-
 }
 
 ?>

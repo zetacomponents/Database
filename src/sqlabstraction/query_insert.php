@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -118,7 +118,7 @@ class ezcQueryInsert extends ezcQuery
             // Assume that set( 'columnName', "nextval('sequenceName')") was called.
             // Converting sequence SQL "nextval('sequenceName')" that valid for PostgreSQL
             // to "sequenceName.nextval" that valid for Oracle.
-            
+
             if ( preg_match( "/nextval\('(.*)'\)/", $expression, $matches ) )
             {
                 $sequenceName = $matches[1];

@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -108,7 +108,7 @@ class ezcQueryExpressionOracle extends ezcQueryExpression
 
     /**
      * Returns the SQL to locate the position of the first occurrence of a substring
-     * 
+     *
      * @param string $substr
      * @param string $value
      * @return string
@@ -270,8 +270,8 @@ class ezcQueryExpressionOracle extends ezcQueryExpression
      *                  ->where( $q->expr->in( 'id', 1, 2, 3 ) );
      * </code>
      *
-     * Oracle limits the number of values in a single IN() to 1000. This 
-     * implementation creates a list of combined IN() expressions to bypass 
+     * Oracle limits the number of values in a single IN() to 1000. This
+     * implementation creates a list of combined IN() expressions to bypass
      * this limitation.
      *
      * @throws ezcQueryVariableParameterException if called with less than two
@@ -302,7 +302,7 @@ class ezcQueryExpressionOracle extends ezcQueryExpression
         {
             throw new ezcQueryVariableParameterException( 'in', count( $args ), 2 );
         }
-        
+
         if ( $this->quoteValues )
         {
             foreach ( $values as $key => $value )
@@ -319,7 +319,7 @@ class ezcQueryExpressionOracle extends ezcQueryExpression
                 }
             }
         }
-        
+
         if ( count( $values ) <= 1000 )
         {
             return "{$column} IN ( " . join( ', ', $values ) . ' )';
@@ -328,7 +328,8 @@ class ezcQueryExpressionOracle extends ezcQueryExpression
         {
             $expression = '( ';
 
-            do {
+            do
+            {
                 $bunch = array_slice( $values, 0, 1000 );
                 $values = array_slice( $values, 1000 );
 

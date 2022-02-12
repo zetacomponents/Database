@@ -329,7 +329,7 @@ abstract class ezcDbHandler extends PDO
                         $this->identifierQuoteChars["end"],
                         $this->identifierQuoteChars["end"].$this->identifierQuoteChars["end"],
                         $identifier
-                      )
+                    )
                     . $this->identifierQuoteChars["end"];
             }
             else

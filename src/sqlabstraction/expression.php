@@ -216,7 +216,6 @@ class ezcQueryExpression
         $this->quoteValues = $doQuoting;
     }
 
-
     /**
      * Returns the SQL to bind logical expressions together using a logical or.
      *
@@ -366,7 +365,7 @@ class ezcQueryExpression
     public function add()
     {
         $args = func_get_args();
-        return $this->basicMath( '+', $args  );
+        return $this->basicMath( '+', $args );
     }
 
     /**
@@ -714,7 +713,9 @@ class ezcQueryExpression
         $expression = $this->getIdentifier( $expression );
         return "{$expression} LIKE {$pattern}";
     }
+
     // aggregate functions
+
     /**
      * Returns the average value of a column
      *
@@ -847,6 +848,7 @@ class ezcQueryExpression
     }
 
     // string functions
+
     /**
      * Returns part of a string.
      *

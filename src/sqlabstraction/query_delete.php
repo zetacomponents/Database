@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -68,7 +68,6 @@ class ezcQueryDelete extends ezcQuery
      */
     protected $whereString = null;
 
-
     /**
      * Constructs a new ezcQueryDelete that works on the database $db and with the aliases $aliases.
      *
@@ -100,7 +99,7 @@ class ezcQueryDelete extends ezcQuery
      *
      * where() accepts an arbitrary number of parameters. Each parameter
      * must contain a logical expression or an array with logical expressions.
-     * where() could be invoked several times. All provided arguments 
+     * where() could be invoked several times. All provided arguments
      * added to the end of $whereString and form final WHERE clause of the query.
      * If you specify multiple logical expression they are connected using
      * a logical and.
@@ -130,7 +129,7 @@ class ezcQueryDelete extends ezcQuery
         }
 
         // glue string should be inserted each time but not before first entry
-        if ( $this->whereString != 'WHERE ' ) 
+        if ( $this->whereString != 'WHERE ' )
         {
             $this->whereString .= ' AND ';
         }
@@ -138,7 +137,6 @@ class ezcQueryDelete extends ezcQuery
         $this->whereString .= join( ' AND ', $expressions );
         return $this;
     }
-
 
     /**
      * Returns the query string for this query object.

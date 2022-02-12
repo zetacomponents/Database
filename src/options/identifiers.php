@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -76,7 +76,6 @@ class ezcDbMssqlOptions extends ezcBaseOptions
      */
     const QUOTES_UNTOUCHED = 3;
 
-
     /**
      * Creates an ezcDbMssqlOptions object with default option values.
      *
@@ -113,8 +112,10 @@ class ezcDbMssqlOptions extends ezcBaseOptions
                      )
                    )
                 {
-                    throw new ezcBaseValueException( $propertyName, $propertyValue,
-                        'one of ezcDbMssqlOptions::QUOTES_COMPLIANT, QUOTES_LEGACY, QUOTES_GUESS, QUOTES_UNTOUCHED constants' );
+                    throw new ezcBaseValueException(
+                        $propertyName, $propertyValue,
+                        'one of ezcDbMssqlOptions::QUOTES_COMPLIANT, QUOTES_LEGACY, QUOTES_GUESS, QUOTES_UNTOUCHED constants'
+                    );
                 }
 
                 $this->quoteIdentifier = (int) $propertyValue;

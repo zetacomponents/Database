@@ -64,7 +64,6 @@ class ezcQuerySelectSqlite extends ezcQuerySelect
         parent::__construct( $db );
     }
 
-
     /**
      * Resets the query object for reuse.
      *
@@ -279,8 +278,10 @@ class ezcQuerySelectSqlite extends ezcQuerySelect
         $table = '';
         if ( !is_string( $args[0] ) )
         {
-            throw new ezcQueryInvalidException( 'SELECT',
-                     'Inconsistent type of first argument passed to rightJoin(). Should be string with name of table.' );
+            throw new ezcQueryInvalidException(
+                'SELECT',
+                'Inconsistent type of first argument passed to rightJoin(). Should be string with name of table.'
+            );
         }
         $table = $this->getIdentifier( $args[0] );
 
@@ -305,7 +306,7 @@ class ezcQuerySelectSqlite extends ezcQuerySelect
 
         if ( end( $this->rightJoins ) === null ) // fill last rightJoin info entry with table name.
         {
-            $lastTable = array_pop ( $this->fromTables );
+            $lastTable = array_pop( $this->fromTables );
             array_pop( $this->rightJoins );
             $this->rightJoins[count( $this->rightJoins )]['tables'][] = $lastTable;
         }
