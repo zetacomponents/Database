@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -140,7 +140,6 @@ class ezcQuerySelectOracle extends ezcQuerySelect
         return $this;
     }
 
-
     /**
      * Returns dummy table name 'dual'.
      *
@@ -160,27 +159,27 @@ class ezcQuerySelectOracle extends ezcQuerySelect
         if ( $this->hasLimit )
         {
             $max = $this->offset + $this->limit;
-            if ( $this->offset > 0 ) 
+            if ( $this->offset > 0 )
             {
                 $min = $this->offset + 1;
                 $query = "SELECT * FROM (SELECT a.*, ROWNUM rn FROM ( {$query} ) a WHERE rownum <= {$max} ) WHERE rn >= {$min}";
             }
-            else 
+            else
             {
                 $query = "SELECT a.* FROM ( {$query} ) a WHERE ROWNUM <= {$max}";
-            }            
+            }
         }
         return $query;
     }
 
     /**
      * Handles preparing query.
-     * 
+     *
      * Overrides ezcQuery->prepare()
-     * 
-     * Adds "FROM dual" to the select if no FROM clause specified 
+     *
+     * Adds "FROM dual" to the select if no FROM clause specified
      * i.e. fixes queries like "SELECT 1+1" to work in Oracle.
-     * 
+     *
      * @return PDOStatement
      */
     public function prepare()
@@ -191,7 +190,6 @@ class ezcQuerySelectOracle extends ezcQuerySelect
         }
         return parent::prepare();
     }
-
 }
 
 ?>

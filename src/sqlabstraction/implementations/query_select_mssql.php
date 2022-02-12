@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -147,9 +147,9 @@ class ezcQuerySelectMssql extends ezcQuerySelect
         $query = parent::getQuery();
         if ( $this->hasLimit )
         {
-            if ( $this->offset) 
+            if ( $this->offset)
             {
-                if ( !$this->orderString ) 
+                if ( !$this->orderString )
                 {
                     // Uh ow. We need some columns to sort in the oposite order to make this work
                     throw new ezcQueryInvalidException( "LIMIT workaround for MS SQL", "orderBy() was not called before getQuery()." );

@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -80,7 +80,6 @@ class ezcQueryUpdate extends ezcQuery
      */
     protected $whereString = null;
 
-
     /**
      * Constructs a new ezcQueryUpdate that works on the database $db and with the aliases $aliases.
      *
@@ -130,9 +129,9 @@ class ezcQueryUpdate extends ezcQuery
      * must contain a logical expression or an array with logical expressions.
      * If you specify multiple logical expression they are connected using
      * a logical and.
-     * where() could be invoked several times. All provided arguments 
+     * where() could be invoked several times. All provided arguments
      * added to the end of $whereString and form final WHERE clause of the query.
-     * 
+     *
      *
      * Example:
      * <code>
@@ -159,7 +158,7 @@ class ezcQueryUpdate extends ezcQuery
         }
 
         // glue string should be inserted each time but not before first entry
-        if ( $this->whereString != 'WHERE ' ) 
+        if ( $this->whereString != 'WHERE ' )
         {
             $this->whereString .= ' AND ';
         }
@@ -167,7 +166,6 @@ class ezcQueryUpdate extends ezcQuery
         $this->whereString .= join( ' AND ', $expressions );
         return $this;
     }
-
 
     /**
      * Returns the query string for this query object.
