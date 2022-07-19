@@ -35,6 +35,13 @@
 class ezcDbHandlerOracle extends ezcDbHandler
 {
     /**
+     * Contains the options that are used to set up handler.
+     *
+     * @var ezcDbOracleOptions
+     */
+    public $options;
+
+    /**
      * Constructs a handler object from the parameters $dbParams.
      *
      * Supported database parameters are:
@@ -78,6 +85,9 @@ class ezcDbHandlerOracle extends ezcDbHandler
         }
 
         parent::__construct( $dbParams, $dsn );
+
+        // setup options
+        $this->setOptions( new ezcDbOracleOptions() );
     }
 
     /**
@@ -88,6 +98,17 @@ class ezcDbHandlerOracle extends ezcDbHandler
     static public function getName()
     {
         return 'oracle';
+    }
+
+    /**
+     * Associates an option object with this handler and changes settings for
+     * opened connections.
+     *
+     * @param ezcDbMssqlOptions $options
+     */
+    public function setOptions( ezcDbOracleOptions $options )
+    {
+        $this->options = $options;
     }
 
     /**
@@ -166,6 +187,23 @@ class ezcDbHandlerOracle extends ezcDbHandler
 
         $str = str_replace( "'", "''", $str );
         return "'$str'";
+    }
+
+    /**
+     * @see ezcDBHandler::quoteIdentifier
+     */
+    public function quoteIdentifier( $identifier )
+    {
+        $requiredMode = $this->options->quoteIdentifier;
+        if ( $requiredMode == ezcDbOracleOptions::QUOTES_UNTOUCHED )
+        {
+            return $identifier;
+        }
+        if ( $requiredMode == ezcDbOracleOptions::QUOTES_GUESS && preg_match( '/^[[:alpha:]][[:alnum:]_]*$/', $identifier ) )
+        {
+            return $identifier;
+        }
+        return parent::quoteIdentifier( $identifier );
     }
 }
 ?>
