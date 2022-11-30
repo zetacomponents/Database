@@ -33,6 +33,8 @@
  */
 class ezcPdoTest extends ezcTestCase
 {
+    protected $q;
+
     protected function setUp() : void
     {
         try

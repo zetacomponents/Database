@@ -66,6 +66,8 @@ class MyDB
  */
 class ezcDatabaseTransactionsTest extends ezcTestCase
 {
+    protected $db;
+
     protected function setUp() : void
     {
         try

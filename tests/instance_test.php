@@ -56,7 +56,7 @@ class ezcDatabaseInstanceTest extends ezcTestCase
     public function testGetWithIdentifierValid()
     {
         $db = ezcDbInstance::get();
-        $db->a = "something";
+        @$db->a = "something";
         ezcDbInstance::set( $db, 'secondary' );
         $this->assertEquals( true, isset( ezcDbInstance::get( 'secondary' )->a ) );
     }
