@@ -1580,6 +1580,16 @@ class ezcQueryExpressionTest extends ezcTestCase
         $this->assertEquals( 'systems', $stmt->fetchColumn( 0 ) );
     }
 
+    public function testSubstringImplWithAliasAndLength()
+    {
+        $this->q->setAliases( array( 'text' => 'company', 'empl' => 'employees' ) );
+        $q = $this->q;
+        $q->select( $q->expr->subString( 'text', 4, 6 ) )->from( 'query_test' )->where( $q->expr->eq( 'id', 1 ) );
+        $stmt = $this->q->prepare();
+        $stmt->execute();
+        $this->assertEquals( 'system', $stmt->fetchColumn( 0 ) );
+    }
+
     public function testConcatSingleImplWithAlias()
     {
         $this->q->setAliases( array( 'text' => 'company', 'empl' => 'employees' ) );
@@ -1823,7 +1833,7 @@ class ezcQueryExpressionTest extends ezcTestCase
         $stmt = $this->q->prepare();
         $stmt->execute();
         $result = $stmt->fetchColumn( 0 );
-        $this->assertSame( (double)$result, floor( (double)$result ) );
+        $this->assertSame( (float)$result, floor( (float)$result ) );
         $this->assertEqualsWithDelta( (int)date( 's' ), (int)$result, 1 ); // with delta 1
     }
 }

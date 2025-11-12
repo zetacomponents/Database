@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -82,6 +82,9 @@ class ezcDbHandlerSqlite extends ezcDbHandler
         parent::__construct( $dbParams, $dsn );
 
         /* Register PHP implementations of missing functions in SQLite */
+        /* don't show deprecations for these */
+        $oldErrorReporting = error_reporting();
+        error_reporting($oldErrorReporting & ~E_DEPRECATED);
         $this->sqliteCreateFunction( 'md5', array( 'ezcQuerySqliteFunctions', 'md5Impl' ), 1 );
         $this->sqliteCreateFunction( 'mod', array( 'ezcQuerySqliteFunctions', 'modImpl' ), 2 );
         $this->sqliteCreateFunction( 'locate', array( 'ezcQuerySqliteFunctions', 'positionImpl' ), 2 );
@@ -90,6 +93,7 @@ class ezcDbHandlerSqlite extends ezcDbHandler
         $this->sqliteCreateFunction( 'concat', array( 'ezcQuerySqliteFunctions', 'concatImpl' ) );
         $this->sqliteCreateFunction( 'toUnixTimestamp', array( 'ezcQuerySqliteFunctions', 'toUnixTimestampImpl' ), 1 );
         $this->sqliteCreateFunction( 'now', 'time', 0 );
+        error_reporting($oldErrorReporting);
     }
 
     /**
