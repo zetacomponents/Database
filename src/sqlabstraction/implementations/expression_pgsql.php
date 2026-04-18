@@ -147,7 +147,7 @@ class ezcQueryExpressionPgsql extends ezcQueryExpression
 
     /**
      * Returns the SQL to locate the position of the first occurrence of a substring
-     * 
+     *
      * @param string $substr
      * @param string $value
      * @return string
@@ -155,7 +155,9 @@ class ezcQueryExpressionPgsql extends ezcQueryExpression
     public function position( $substr, $value )
     {
         $value = $this->getIdentifier( $value );
-        return "POSITION( '{$substr}' IN {$value} )";
+        // Use PDO::quote() to safely embed $substr, preventing SQL injection.
+        $quotedSubstr = $this->db->quote( (string) $substr );
+        return "POSITION( {$quotedSubstr} IN {$value} )";
     }
 
     /**
